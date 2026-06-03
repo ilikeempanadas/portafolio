@@ -1,0 +1,250 @@
+body{
+    background-image: url(imagenes/fondo.jpg);
+    justify-content: center;
+}
+header{
+    background-color: pink;
+    width: auto;
+    height: 270px;
+    border-style: solid;
+    border-color: rgb(255, 131, 172);
+    margin: 15px;
+}
+.gif{
+        position: absolute;
+bottom: -75px;
+top: 10px;
+left: 100px;
+  transition: background-color 1s ease-out, transform 1s ease-out;
+
+}
+.gif:hover{
+    transform: scale(1.1);
+}
+
+.gif2{
+    position:absolute;
+    left: 1050px;
+    bottom: -500px;
+    transition: background-color 1s ease-out, transform 1s ease-out;
+
+}
+.gif2:hover{
+    transform: scale(1.1);
+}
+.foto{
+    position: absolute;
+bottom: -75px;
+top: 219px;
+left: 1100px; 
+transition: background-color 1s ease-out, transform 1s ease-out;
+}
+.foto:hover {
+  transform: scale(1.5);
+}
+
+nav{
+    width: 500px;
+display:flex;
+flex-direction:row ;
+justify-content: center;
+background-color: rgb(255, 243, 201);
+margin: 10px;
+padding: 10px;
+border-style: solid;
+border-color: pink;
+margin-left: 400px;
+}
+button{
+    color:pink;
+}
+
+.boton{
+    color:pink;
+}
+p{
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    margin: 10px;
+    padding: 5px;
+   background-color: rgba(253, 173, 204, 0.527);
+    font-family:'Times New Roman', Times, serif;
+    color:rgb(255, 146, 188);
+    display:flex;
+flex-direction:row ;
+justify-content: center;
+border-style:solid;
+border-width: 5px;
+border-radius: 15px;
+border-color:rgb(255, 243, 201);
+  transition: background-color 1s ease-out, transform 1s ease-out;
+
+}
+h1:hover{
+    transform: scale(1.1);
+}
+
+h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(255, 129, 150);
+    background-color:rgb(255, 241, 190);;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+}
+h3{
+    color: rgb(255, 158, 195);
+    display: flex;
+    flex-direction: row;
+}
+h4{
+    margin: 15px;
+    padding: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    color:rgb(255, 105, 162);    
+    font-size: 20px;
+    display:flex;
+    flex-wrap: wrap;
+}
+p{
+    color: rgb(255, 80, 139);
+    font-size: 20px;
+    align-items: center;
+}
+article{
+     padding: 15px;
+    margin: 15px;
+    background-color:   rgb(255, 213, 231);
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: rgb(243, 96, 165);
+  transition: background-color 1s ease-out, transform 1s ease-out;
+
+}
+article:hover{
+    transform: scale(1.1);
+}
+
+img{
+    
+    padding: 10px;
+    width: auto;
+    height: 200px;
+    border-radius: 50px;
+}
+section{
+     display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 175, 0.541);
+    border-style:solid;
+    border-radius: 10px;
+    border-color: rgb(243, 96, 165);
+    width: auto;
+    height: auto;
+    padding: 15px;
+}
+.botones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+    button{ 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     color: rgb(212, 52, 87);
+    background-color: rgb(255, 255, 175);
+    border-style: double;
+    border-color: rgb(255, 143, 199) ;
+    border-width: 10px;
+display:flex;
+flex-direction:row;
+margin: 5px;
+padding: 5px;
+cursor: pointer;
+border-radius: 5px;
+ transition: background-color 1s ease-out, transform 1s ease-out;
+
+}
+button:hover {
+  background-color: rgb(255, 234, 167);
+  transform: scale(1.1);
+}
+
+footer{
+    
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+    padding:5px;
+    border-color: rgb(255, 86, 156);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 
+    Geneva, Verdana, sans-serif;
+    width:auto;
+    height: auto;
+    background-color: rgba(rgba(255, 94, 161, 0.575), 0.75);
+}
+ figure{
+    background-color: rgba(255, 128, 170, 0.603);
+    border-style: double;
+    border-color: rgb(255, 255, 175);
+    border-width: 15px;
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+}
+
+.fila{
+     width: 1200px;
+  position: relative;
+  animation-name: myAnimation;
+  animation-duration:5s;
+  animation-fill-mode: forwards;
+}
+
+#div1 {animation-timing-function: linear;}
+#div2 {animation-timing-function: ease;}
+#div3 {animation-timing-function: ease-in;}
+#div4 {animation-timing-function: ease-out;}
+#div5 {animation-timing-function: ease-in-out;}
+
+@keyframes myAnimation {
+  from {left: 0px;}
+  to {left: 50px;}
+}
+
+@media only screen and (max-width:419px){
+body{
+    width: 100%;
+    background-color: rgb(2, 0, 0);
+    display: flex;
+    flex-direction: column;
+align-items: center;
+}
+}
+@media only screen and (max-width:767px){
+body{
+    background-color: rgb(255, 0, 0);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+align-items: center;
+}
+}
+@media only screen and (max-width:1023px){
+body{
+    background-color: rgb(225, 0, 255);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+align-items: center;
+}
+}

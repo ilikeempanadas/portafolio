@@ -1,0 +1,114 @@
+body{
+ background-image: url(pinal.jfif);
+}
+
+section{
+    border-radius: 50px;
+    margin: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgba(166, 205, 255, 0.932);
+    width: auto;
+    height: auto;
+   border-style:solid;
+border-width: 5px;
+border-radius: 15px;
+border-color:rgb(111, 173, 255);  
+}
+button{
+    display:flex;
+flex-direction:row ;
+justify-content: center;
+    background-color: rgb(198, 232, 255);
+    border-style: solid;
+    border-color: rgb(27, 112, 168);
+    padding: 3px;
+ transition: background-color 1s ease-out, transform 1s ease-out;
+}
+button:hover{
+    transform: scale(1.1);}
+
+h2{
+  margin: 10px;
+    padding: 5px;
+   background-color: rgba(164, 211, 255, 0.918);
+    font-family:'Times New Roman', Times, serif;
+    display:flex;
+flex-direction:row ;
+justify-content: center;
+border-style:solid;
+border-width: 5px;
+border-radius: 15px;
+border-color:rgb(111, 173, 255);   
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-style: oblique;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h3{
+    background-color: rgb(213, 223, 255);
+    justify-content: center;
+border-style:solid;
+border-width: 4px;
+border-radius: 15px;
+border-color:rgb(111, 173, 255);  
+width: 300px;
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: rgb(32, 84, 119);
+    font-style: oblique;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+article{
+      padding: 15px;
+    margin: 15px;
+    background-color: rgb(213, 223, 255);
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: rgb(40, 147, 218);
+      color: rgb(32, 84, 119);
+    font-style: oblique;
+    font-family: 'Times New Roman', Times, serif;
+}
+img{
+    position: absolute;
+    left: 1100px;
+    top: 300px;
+ transition: background-color 1s ease-out, transform 1s ease-out;
+}
+img:hover{
+    transform: scale(1.1);
+}
+.foto{
+     position: absolute;
+left: -999px;}
+div{
+    background-color: rgba(207, 240, 255, 0.63);
+    border-radius: 40px;
+     position: absolute;
+    left: 100px;
+    top: 50x;
+}
+footer{
+    align-items: center;
+    margin: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}

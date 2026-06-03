@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widt=device-width, initial-scale=1.0">
+    <title> Taller Javascript</title>
+    <link rel="stylesheet" href="taller.css">
+</head>
+<header><h2>Fundamentos del Desarrollo Web: HTML, CSS, JavaScript y Persistencia de Datos </h2>
+</header>
+<body>
+   <section>
+<h2>Preguntas</h2>
+ <article>
+1. ¿Qué es una interfaz de captura de datos? 
+<br>
+ Es un espacio donde el usuario ingresa la información en un sistema, ya sea un login, un registro, o un formulario; este  mismo debe ser claro y conciso para evitar errores/confusiones del usuario.
+</article>
+<article>
+2. ¿Cómo garantizar la calidad de los datos al digitarlos?
+<br>
+Con validaciones de estos mismos, ya sea con campos obligatorios o especificaciones de los datos; como por ejemplo poner que en el campo de edad solo se puedan colocar números, tenga un limite (2) y que este mismo campo sea obligatorio.
+</article>
+<article>
+3. ¿Qué son las expresiones regulares en JavaScript y para qué se usan?<br>
+ Son patrones de búsqueda que sirven para validar o encontrar texto; se puede usar para verificar correos.
+ <pre><code>Ejemplo: JavaScript
+et correo = "test@gmail.com";
+let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+console.log(regex.test(correo)); // true
+</code></pre>
+</article>
+<article>
+4. ¿Qué etiquetas se usan para crear interfaces de datos con HTML?
+ <br>
+ <pre><code>
+Las etiquetas son:
+&lt;form> → contiene todo
+&lt;input> → campos (texto, número, contraseña…)
+&lt;label> → nombre del campo
+&lt;select> → lista desplegable
+&lt;textarea> → texto largo
+&lt;button> → enviar
+    </code></pre>
+</article>
+ <article>
+5.¿Cómo lograr persistencia de datos en la web con JavaScript?
+<br>
+ Usando almacenamiento como localStorage, sessionStorage o bases de datos (por ejemplo con APIs o backend).
+ 
+</article>
+ <article>
+6. ¿Qué significa JSON y para qué se usa? Ejemplo.<br>
+Es como el “idioma universal” para enviar datos en la web, se usa mucho para las APIs (para comunicar una app con otra).
+<pre><code>
+Ejemplo: JSON
+{
+  "nombre": "Imary",
+  "edad": 16,
+  "activo": true
+}
+ </code></pre>
+</article>
+ <article>
+7. ¿Qué es localStorage y para qué se usa? Ejemplo.<br>
+ Es un almacenamiento del navegador que guarda datos de forma permanente
+ <pre><code>
+ Ejemplo:
+Guardar: localStorage.setItem("color", "rosado");
+Leer: localStorage.getItem("color");
+Eliminar: localStorage.removeItem("color");
+ </code></pre>
+</article>
+ <article>
+8. ¿Cómo hacer animaciones y transformaciones con CSS y JavaScript?
+<br>
+ Con CSS usando transform, transition y @keyframes.
+ JavaScript se usa para activar o controlar esas animaciones dinámicamente. 
+ <pre><code>
+ 
+Ejemplo:
+#caja {
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  transition: transform 0.5s ease;
+} Con CSS usando transform, transition y @keyframes.
+ JavaScript se usa para activar o controlar esas animaciones dinámicamente.
+/* Clase que activa la animación */
+.animada {
+  transform: translateX(200px) rotate(360deg);}
+function animar() {
+  const caja = document.getElementById("caja");
+  caja.classList.toggle("animada");
+}
+ </code></pre>
+</article>
+ <article>
+9. ¿Qué es un framework de CSS? ¿Cómo se usa? Ejemplos.
+<br>
+  Es una librería que facilita diseñar páginas con estilos ya hechos.
+ <pre><code>
+ Ejemplo: 
+&lt;button class="btn btn-primary">Click</button>
+ </code></pre>
+</article>
+ <article>
+10. ¿Qué es un framework en JavaScript? ¿Cómo se usa? Ejemplos.<br>
+  Es una herramienta que ayuda a crear aplicaciones web más fácil y rápido.
+Ejemplo React:
+Divide la web en componentes
+Actualiza la pantalla sin recargar
+Hace todo más organizado
+
+ <pre><code>
+ Ejemplo simple:
+function App() {
+  return <h1>Hola</h1>;
+}
+ </code></pre>
+</article>
+</section>
+<footer>
+    <button><a href="index.html"><h2>Página Principal</h2></a></button>
+<button><a href="https://docs.google.com/document/d/1Nb5sL0hNr_fMQVAaI1G6i6VezquTcfuyRIhKSR-LPk4/edit?usp=sharing"><h2>Archivo Word</h2></a></button>
+</footer>
+
+
+</body>
