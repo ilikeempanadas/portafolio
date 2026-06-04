@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Cronómetro PRO</title>
+
+<style>
+
+:root{
+    --panel:#fff5da;
+    --panel-2:#ff9bb9;
+    --text:#f85b97;
+    --green:#ff88b0;
+    --yellow:#ffe591;
+    --red:#ff5c92;
+    --blue:#b17c52;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background-image: url(sisi.jpg);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.app{
+    width:100%;
+    max-width:720px;
+    background:var(--panel);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 0 40px rgba(255, 140, 178, 0.45);
+}
+
+/* MENU */
+
+.menu{
+    display:flex;
+    background:var(--panel-2);
+    border-bottom:1px solid rgba(255, 233, 162, 0.801);
+}
+
+.menu button{
+    flex:1;
+    padding:18px;
+    border:none;
+    background:none;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+.menu button:hover{
+    background:#ffefaa;
+}
+
+.menu button.active{
+    background:#b17c52;
+}
+
+/* CONTENIDO */
+
+.section{
+    padding:30px;
+}
+
+.hidden{
+    display:none;
+}
+
+/* TIMER */
+
+.display{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.time{
+
+    font-size:92px;
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+    font-variant-numeric:tabular-nums;
+
+    will-change:contents;
+
+    line-height:1;
+
+    text-rendering:optimizeSpeed;
+
+    user-select:none;
+}
+
+.status{
+    margin-top:15px;
+    opacity:.7;
+    font-size:14px;
+}
+
+/* CONTROLES */
+
+.controls{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.controls button{
+
+    border:solid;
+    border-color: #7a502d;
+    border-radius:14px;
+
+    padding:16px;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:
+    transform .15s ease,
+    opacity .2s ease,
+    background .2s ease;
+}
+
+.controls button:hover{
+    transform:translateY(-2px);
+}
+
+.controls button:active{
+    transform:scale(.98);
+}
+
+.controls button:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+.start{ background:var(--green); }
+.pause{ background:var(--yellow); }
+.reset{ background:var(--red); }
+.lap{ background:var(--blue); }
+
+/* LISTAS */
+
+.list{
+    margin-top:25px;
+    max-height:320px;
+    overflow:auto;
+}
+
+.item{
+    background:#fdebb0;
+    padding:14px;
+    border-radius:14px;
+    margin-bottom:12px;
+    animation:fade .2s ease;
+}
+
+.item strong{
+    color:#ff93b7;
+}
+
+.diff{
+    opacity:.7;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.empty{
+    opacity:.6;
+    text-align:center;
+    padding:20px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.stat-card{
+    background:#fffab8;
+    padding:18px;
+    border-radius:16px;
+}
+
+.stat-card h3{
+    margin-bottom:8px;
+    font-size:14px;
+    opacity:.7;
+}
+
+.stat-card p{
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ffffff;
+    border-radius:10px;
+}
+
+/* ANIMACION */
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:700px){
+
+    .time{
+        font-size:58px;
+    }
+
+    .controls{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU -->
+    <div class="menu">
+
+        <button class="active" data-target="cronometro">
+            Cronómetro
+        </button>
+
+        <button data-target="registros">
+            Vueltas registradas
+        </button>
+
+        <button data-target="estadisticas">
+            Estadísticas
+        </button>
+
+        <button id="clearSaved">
+            Limpiar
+        </button>
+
+    </div>
+
+    <!-- CRONOMETRO -->
+    <section class="section" id="cronometro">
+
+        <div class="display">
+
+            <div class="time" id="display">
+                00:00:00:000
+            </div>
+
+            <div class="status" id="status">
+                Detenido
+            </div>
+
+        </div>
+
+        <div class="controls">
+
+            <button
+            class="start"
+            id="startBtn">
+                Iniciar
+            </button>
+
+            <button
+            class="pause"
+            id="pauseBtn"
+            disabled>
+                Pausar
+            </button>
+
+            <button
+            class="reset"
+            id="resetBtn">
+                Reiniciar
+            </button>
+
+            <button
+            class="lap"
+            id="lapBtn"
+            disabled>
+                Registrar vuelta
+            </button>
+
+        </div>
+
+        <div class="list" id="activeLaps"></div>
+
+    </section>
+
+    <!-- REGISTROS -->
+    <section class="section hidden" id="registros">
+
+        <h2>Vueltas registradas</h2>
+
+        <div class="list" id="savedLaps"></div>
+
+    </section>
+
+    <!-- ESTADISTICAS -->
+    <section class="section hidden" id="estadisticas">
+
+        <h2>Estadísticas</h2>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h3>Total vueltas</h3>
+                <p id="totalLaps">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Mejor vuelta</h3>
+                <p id="bestLap">00:00:00:000</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+
+const state = {
+
+    running:false,
+
+    startTime:0,
+
+    elapsed:0,
+
+    animationFrame:null,
+
+    laps:[],
+
+    savedLaps:
+        JSON.parse(localStorage.getItem("vueltas")) || [],
+
+    lastRendered:""
+};
+
+/* ELEMENTOS */
+
+const display =
+    document.getElementById("display");
+
+const statusText =
+    document.getElementById("status");
+
+const activeLaps =
+    document.getElementById("activeLaps");
+
+const savedLaps =
+    document.getElementById("savedLaps");
+
+const totalLaps =
+    document.getElementById("totalLaps");
+
+const bestLap =
+    document.getElementById("bestLap");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const pauseBtn =
+    document.getElementById("pauseBtn");
+
+const resetBtn =
+    document.getElementById("resetBtn");
+
+const lapBtn =
+    document.getElementById("lapBtn");
+
+/* FORMATO TIEMPO */
+
+function formatTime(ms){
+
+    const milliseconds =
+        Math.floor(ms % 1000)
+        .toString()
+        .padStart(3, "0");
+
+    const seconds =
+        String(Math.floor(ms / 1000) % 60)
+        .padStart(2,"0");
+
+    const minutes =
+        String(Math.floor(ms / 60000) % 60)
+        .padStart(2,"0");
+
+    const hours =
+        String(Math.floor(ms / 3600000))
+        .padStart(2,"0");
+
+    return `${hours}:${minutes}:${seconds}:${milliseconds}`;
+}
+
+/* RENDER */
+
+function renderDisplay(){
+
+    const formatted =
+        formatTime(state.elapsed);
+
+    if(formatted !== state.lastRendered){
+
+        display.textContent = formatted;
+
+        state.lastRendered = formatted;
+    }
+}
+
+/* LOOP */
+
+function update(){
+
+    if(!state.running) return;
+
+    state.elapsed =
+        performance.now() - state.startTime;
+
+    renderDisplay();
+
+    state.animationFrame =
+        requestAnimationFrame(update);
+}
+
+/* START */
+
+function start(){
+
+    if(state.running) return;
+
+    state.running = true;
+
+    state.startTime =
+        performance.now() - state.elapsed;
+
+    statusText.textContent = "En ejecución";
+
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    lapBtn.disabled = false;
+
+    update();
+}
+
+/* PAUSE */
+
+function pause(){
+
+    if(!state.running) return;
+
+    state.running = false;
+
+    cancelAnimationFrame(state.animationFrame);
+
+    statusText.textContent = "Pausado";
+
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+}
+
+/* RESET */
+
+function reset(){
+
+    pause();
+
+    state.elapsed = 0;
+
+    state.laps = [];
+
+    renderDisplay();
+
+    activeLaps.innerHTML = "";
+
+    statusText.textContent = "Detenido";
+
+    lapBtn.disabled = true;
+}
+
+/* CREAR ITEM */
+
+function createLapItem(index,total,diff){
+
+    const div = document.createElement("div");
+
+    div.className = "item";
+
+    div.innerHTML = `
+        <strong>Vuelta ${index}</strong>
+        <div>${formatTime(total)}</div>
+        <div class="diff">
+            +${formatTime(diff)}
+        </div>
+    `;
+
+    return div;
+}
+
+/* AGREGAR VUELTA */
+
+function addLap(){
+
+    if(state.elapsed <= 0) return;
+
+    const previous =
+        state.laps.length
+        ? state.laps[state.laps.length - 1]
+        : 0;
+
+    const diff =
+        state.elapsed - previous;
+
+    const lap = {
+
+        id:Date.now(),
+
+        number:state.laps.length + 1,
+
+        total:state.elapsed,
+
+        diff
+    };
+
+    state.laps.push(state.elapsed);
+
+    activeLaps.prepend(
+        createLapItem(
+            lap.number,
+            lap.total,
+            lap.diff
+        )
+    );
+
+    state.savedLaps.unshift(lap);
+
+    localStorage.setItem(
+        "vueltas",
+        JSON.stringify(state.savedLaps)
+    );
+
+    renderSavedLaps();
+
+    renderStats();
+}
+
+/* RENDER VUELTAS */
+
+function renderSavedLaps(){
+
+    savedLaps.innerHTML = "";
+
+    if(!state.savedLaps.length){
+
+        savedLaps.innerHTML = `
+            <div class="empty">
+                No hay vueltas guardadas
+            </div>
+        `;
+
+        return;
+    }
+
+    const fragment =
+        document.createDocumentFragment();
+
+    state.savedLaps.forEach(lap => {
+
+        fragment.appendChild(
+            createLapItem(
+                lap.number,
+                lap.total,
+                lap.diff
+            )
+        );
+    });
+
+    savedLaps.appendChild(fragment);
+}
+
+/* ESTADISTICAS */
+
+function renderStats(){
+
+    totalLaps.textContent =
+        state.savedLaps.length;
+
+    if(!state.savedLaps.length){
+
+        bestLap.textContent =
+            "00:00:00:000";
+
+        return;
+    }
+
+    const best =
+        Math.min(
+            ...state.savedLaps.map(l => l.diff)
+        );
+
+    bestLap.textContent =
+        formatTime(best);
+}
+
+/* LIMPIAR */
+
+function clearSaved(){
+
+    localStorage.removeItem("vueltas");
+
+    state.savedLaps = [];
+
+    renderSavedLaps();
+
+    renderStats();
+}
+
+/* MENU */
+
+const menuButtons =
+    document.querySelectorAll(".menu button[data-target]");
+
+const sections =
+    document.querySelectorAll(".section");
+
+menuButtons.forEach(button => {
+
+    button.addEventListener("click",()=>{
+
+        menuButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        sections.forEach(section =>
+            section.classList.add("hidden")
+        );
+
+        document
+        .getElementById(button.dataset.target)
+        .classList.remove("hidden");
+    });
+});
+
+/* EVENTOS */
+
+startBtn.addEventListener("click",start);
+
+pauseBtn.addEventListener("click",pause);
+
+resetBtn.addEventListener("click",reset);
+
+lapBtn.addEventListener("click",addLap);
+
+document
+.getElementById("clearSaved")
+.addEventListener("click",clearSaved);
+
+/* INIT */
+
+renderSavedLaps();
+
+renderStats();
+
+renderDisplay();
+
+</script>
+
+</body>
+</html>

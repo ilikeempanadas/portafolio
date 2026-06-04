@@ -1,0 +1,52 @@
+{
+  "curso": "11-1",
+  "institucion": "IE El Pinal",
+  "estudiantes": [
+    {
+      "id": 1,
+      "nombre": "Sofía Martínez",
+      "promedio": 4.8,
+      "puesto": 1,
+      "faltas": [
+        "2026-03-12",
+        "2026-04-08"
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Juan David Gómez",
+      "promedio": 4.6,
+      "puesto": 2,
+      "faltas": [
+        "2026-02-18"
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Valentina Ríos",
+      "promedio": 4.5,
+      "puesto": 3,
+      "faltas": []
+    },
+    {
+      "id": 4,
+      "nombre": "Mateo Herrera",
+      "promedio": 4.2,
+      "puesto": 4,
+      "faltas": [
+        "2026-01-30",
+        "2026-05-02",
+        "2026-05-10"
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Camila Torres",
+      "promedio": 3.9,
+      "puesto": 5,
+      "faltas": [
+        "2026-03-25"
+      ]
+    }
+  ]
+}
